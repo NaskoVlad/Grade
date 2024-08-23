@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         int number = 25;
-
+        Thread thread1 = null;
         List<Thread> threads = new ArrayList<>(number);
 
         String[] texts = new String[25];
@@ -38,14 +38,14 @@ public class Main {
                     }
                 }
                 System.out.println(text.substring(0, 100) + " -> " + maxSize);
-
             };
             Thread thread = new Thread(logic);
             thread.start();
+            thread1 = thread;
         }
+        thread1.join();
         long endTs = System.currentTimeMillis(); // end time
         System.out.println("Time: " + (endTs - startTs) + "ms");
-
     }
 
     public static String generateText(String letters, int length) {
